@@ -4,6 +4,7 @@
   "description": "Lottery of lottery for montpellier-jug",
   "main": "index.js",
   "scripts": {
+    "deploy": "gh-pages -d .",
     "test": "echo \"Open tests/tests.html in your browser!\""
   },
   "author": "Romain Maneschi",
