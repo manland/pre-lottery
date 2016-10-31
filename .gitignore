@@ -1,0 +1,4 @@
+.idea
+node_modules/.bin
+node_modules/gh-pages
+# keep node_modules/jasmine-core because it's required by tests.html page. I know is bad :D
