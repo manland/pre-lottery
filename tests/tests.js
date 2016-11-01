@@ -19,15 +19,17 @@ describe('Init', function() {
         expect(token).not.toBeNull();
     });
 
-    it(`should have an event created or not`, function(onDone) {
-        fetch(`https://www.eventbriteapi.com/v3/events/search/?organizer.id=1464915124&token=${token}`).then((data) => {
-            return data.json();
-        }).then((events) => {
-            eventIsCreated = events.events.length > 0;
-            expect(true).toBe(true);
-            onDone();
+    if(token) {
+        it(`should have an event created or not`, function (onDone) {
+            fetch(`https://www.eventbriteapi.com/v3/events/search/?organizer.id=1464915124&token=${token}`).then((data) => {
+                return data.json();
+            }).then((events) => {
+                eventIsCreated = events.events.length > 0;
+                expect(true).toBe(true);
+                onDone();
+            });
         });
-    });
+    }
 
 });
 
