@@ -4,6 +4,9 @@ const implementations = [{
 }, {
     language: 'Scala',
     url: 'http://lottery-scala.jug-montpellier.org'///winners?n=1'
+}, {
+    language: 'Go',
+    url: 'http://lottery-go.jug-montpellier.org'
 }];
 
 implementations.forEach((implementation) => {
