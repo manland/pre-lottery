@@ -1,6 +1,6 @@
 const implementations = [{
     language: 'NodeJs',
-    url: 'http://lottery.jug-montpellier.org'///27641970879/10'
+    url: 'http://lottery-js.jug-montpellier.org'///winners?nb=1'
 }, {
     language: 'Scala',
     url: 'http://lottery-scala.jug-montpellier.org'///winners?n=1'
