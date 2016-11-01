@@ -11,13 +11,11 @@ implementations.forEach((implementation) => {
     describe(implementation.language, function() {
 
         it(`should return 1 winner :: ${implementation.url}/winners?nb=1`, function(onDone) {
-            fetch(`${implementation.url}/winners?n=1`).then((data) => {
+            fetch(`${implementation.url}/winners?n=1`).then(data => {
                 expect(data.status).toBe(200);
-                return data.json();
-            }).then((json) => {
-                expect(json.length).toBe(1);
+                expect(data.json().length).toBe(1);
                 onDone();
-            });
+            }, onDone);
         });
 
         it(`should return n winners :: ${implementation.url}/winners?nb=N`, function(onDone) {
