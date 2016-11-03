@@ -4,6 +4,8 @@
   "description": "Lottery of lottery for montpellier-jug",
   "main": "index.js",
   "scripts": {
+    "dev": "mkdir -p dist && cp fetcher/index.html dist && rollup --watch -i fetcher/main.js -o dist/bundle.js -f iife",
+    "build": "rollup -i fetcher/main.js -o dist/bundle.js -f iife",
     "deploy": "gh-pages -d .",
     "test": "echo \"Open tests/tests.html in your browser!\""
   },
@@ -13,6 +15,8 @@
     "jasmine-core": "=2.5.2"
   },
   "devDependencies": {
-    "gh-pages": "=0.11.0"
+    "gh-pages": "=0.11.0",
+    "rollup": "=0.36.3",
+    "rollup-watch": "=2.5.0"
   }
 }
