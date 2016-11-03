@@ -4,7 +4,7 @@
   "description": "Lottery of lottery for montpellier-jug",
   "main": "index.js",
   "scripts": {
-    "dev": "mkdir -p dist && cp fetcher/index.html dist && rollup --watch -i fetcher/main.js -o dist/bundle.js -f iife",
+    "dev": "mkdir -p dist && cp fetcher/index.html dist && cp fetcher/index.css dist && rollup --watch -i fetcher/main.js -o dist/bundle.js -f iife -m inline",
     "build": "rollup -i fetcher/main.js -o dist/bundle.js -f iife",
     "deploy": "gh-pages -d .",
     "test": "echo \"Open tests/tests.html in your browser!\""
