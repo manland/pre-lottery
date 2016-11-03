@@ -11,23 +11,18 @@ const implementations = [{
 
 let eventIsCreated = false;
 
-describe('Init', function() {
+describe('Init', () => {
 
     const token = getParameterByName('token');
 
-    it(`should have query param token in url`, function() {
-        expect(token).not.toBeNull();
-    });
+    it(`should have query param token in url`, () => expect(token).not.toBeNull());
 
     if(token) {
-        it(`should have an event created or not`, function (onDone) {
-            fetch(`https://www.eventbriteapi.com/v3/events/search/?organizer.id=1464915124&token=${token}`).then((data) => {
-                return data.json();
-            }).then((events) => {
-                eventIsCreated = events.events.length > 0;
+        it(`should have an event created or not`, onDone => {
+            fetch(`https://www.eventbriteapi.com/v3/events/search/?organizer.id=1464915124&token=${token}`).then(data => {
+                eventIsCreated = data.json().events.length > 0;
                 expect(true).toBe(true);
-                onDone();
-            });
+            }).then(onDone, onDone);
         });
     }
 
@@ -35,79 +30,63 @@ describe('Init', function() {
 
 implementations.forEach((implementation) => {
 
-    describe(implementation.language, function() {
+    describe(implementation.language, () => {
 
         if(eventIsCreated) {
 
-            it(`should return 1 winner :: ${implementation.url}/winners?nb=1`, function (onDone) {
-                fetch(`${implementation.url}/winners?nb=1`).then((data) => {
+            it(`should return 1 winner :: ${implementation.url}/winners?nb=1`, onDone => {
+                fetch(`${implementation.url}/winners?nb=1`).then(data => {
                     expect(data.status).toBe(200);
-                    return data.json();
-                }).then((json) => {
-                    expect(json.length).toBe(1);
-                    onDone();
-                });
+                    expect(data.json().length).toBe(1);
+                }).then(onDone, onDone);
             });
 
-            it(`should return n winners :: ${implementation.url}/winners?nb=N`, function (onDone) {
+            it(`should return n winners :: ${implementation.url}/winners?nb=N`, onDone => {
                 const nb = Math.floor((Math.random() * 10) + 1);
-                fetch(`${implementation.url}/winners?nb=${nb}`).then((data) => {
+                fetch(`${implementation.url}/winners?nb=${nb}`).then(data => {
                     expect(data.status).toBe(200);
-                    return data.json();
-                }).then((json) => {
-                    expect(json.length).toBe(nb);
-                    onDone();
-                });
+                    expect(data.json().length).toBe(nb);
+                }).then(onDone, onDone);
             });
 
-            it(`should return an empty array when nb param is 0 :: ${implementation.url}/winners?nb=0`, function (onDone) {
-                fetch(`${implementation.url}/winners?nb=0`).then((data) => {
+            it(`should return an empty array when nb param is 0 :: ${implementation.url}/winners?nb=0`, onDone => {
+                fetch(`${implementation.url}/winners?nb=0`).then(data => {
                     expect(data.status).toBe(200);
-                    return data.json();
-                }).then((json) => {
-                    expect(json.length).toBe(0);
-                    onDone();
-                });
+                    expect(data.json().length).toBe(0);
+                }).then(onDone, onDone);
             });
 
-            it(`should return all winners when nb param is big :: ${implementation.url}/winners?nb=10000`, function (onDone) {
-                fetch(`${implementation.url}/winners?nb=10000`).then((data) => {
+            it(`should return all winners when nb param is big :: ${implementation.url}/winners?nb=10000`, onDone => {
+                fetch(`${implementation.url}/winners?nb=10000`).then(data => {
                     expect(data.status).toBe(200);
-                    return data.json();
-                }).then((json) => {
-                    expect(json.length).toBeGreaterThan(0);
-                    onDone();
-                });
+                    expect(data.json().length).toBeGreaterThan(0);
+                }).then(onDone, onDone);
             });
 
-            it(`should return an http 400 error when no param nb :: ${implementation.url}/winners`, function (onDone) {
-                fetch(`${implementation.url}/winners`).then((data) => {
+            it(`should return an http 400 error when no param nb :: ${implementation.url}/winners`, onDone => {
+                fetch(`${implementation.url}/winners`).then(data => {
                     expect(data.status).toBe(400);
-                    onDone();
-                });
+                }).then(onDone, onDone);
             });
 
-            it(`should return an http 400 error when param nb is not a number :: ${implementation.url}/winners?nb=nb`, function (onDone) {
-                fetch(`${implementation.url}/winners?nb=nb`).then((data) => {
+            it(`should return an http 400 error when param nb is not a number :: ${implementation.url}/winners?nb=nb`, onDone => {
+                fetch(`${implementation.url}/winners?nb=nb`).then(data => {
                     expect(data.status).toBe(400);
-                    onDone();
-                });
+                }).then(onDone, onDone);
             });
 
-            it(`should return an http 400 error when nb param is negative :: ${implementation.url}/winners?nb=-1`, function (onDone) {
-                fetch(`${implementation.url}/winners?nb=-1`).then((data) => {
+            it(`should return an http 400 error when nb param is negative :: ${implementation.url}/winners?nb=-1`, onDone => {
+                fetch(`${implementation.url}/winners?nb=-1`).then(data => {
                     expect(data.status).toBe(400);
-                    onDone();
-                });
+                }).then(onDone, onDone);
             });
 
         } else { // no event created
 
-            it(`should return an http 502 error when no event founded :: ${implementation.url}/winners?nb=1`, function (onDone) {
-                fetch(`${implementation.url}/winners?nb=1`).then((data) => {
+            it(`should return an http 502 error when no event founded :: ${implementation.url}/winners?nb=1`, onDone => {
+                fetch(`${implementation.url}/winners?nb=1`).then(data => {
                     expect(data.status).toBe(502);
-                    onDone();
-                });
+                }).then(onDone, onDone);
             });
 
         }
