@@ -1,12 +1,12 @@
 const implementations = [{
     language: 'NodeJs',
-    url: 'http://lottery.jug-montpellier.org'///27641970879/10'
+    url: 'https://lottery.jug-montpellier.org'///27641970879/10'
 }, {
     language: 'Scala',
-    url: 'http://lottery-scala.jug-montpellier.org'///winners?n=1'
+    url: 'https://lottery-scala.jug-montpellier.org'///winners?n=1'
 }, {
     language: 'Go',
-    url: 'http://lottery-go.jug-montpellier.org'
+    url: 'https://lottery-go.jug-montpellier.org'
 }];
 
 let eventIsCreated = false;
