@@ -21,8 +21,8 @@ describe('Init', () => {
         it(`should have an event created or not`, onDone => {
             fetch(`https://www.eventbriteapi.com/v3/events/search/?organizer.id=1464915124&token=${token}`).then(data => {
                 eventIsCreated = data.json().events.length > 0;
-                expect(true).toBe(true);
-            }).then(onDone, onDone);
+                oneDone();
+            }, onDone);
         });
     }
 
@@ -38,7 +38,8 @@ implementations.forEach((implementation) => {
                 fetch(`${implementation.url}/winners?nb=1`).then(data => {
                     expect(data.status).toBe(200);
                     expect(data.json().length).toBe(1);
-                }).then(onDone, onDone);
+                    onDone();
+                }, onDone);
             });
 
             it(`should return n winners :: ${implementation.url}/winners?nb=N`, onDone => {
@@ -46,47 +47,54 @@ implementations.forEach((implementation) => {
                 fetch(`${implementation.url}/winners?nb=${nb}`).then(data => {
                     expect(data.status).toBe(200);
                     expect(data.json().length).toBe(nb);
-                }).then(onDone, onDone);
+                    onDone();
+                }, onDone);
             });
 
             it(`should return an empty array when nb param is 0 :: ${implementation.url}/winners?nb=0`, onDone => {
                 fetch(`${implementation.url}/winners?nb=0`).then(data => {
                     expect(data.status).toBe(200);
                     expect(data.json().length).toBe(0);
-                }).then(onDone, onDone);
+                    onDone();
+                }, onDone);
             });
 
             it(`should return all winners when nb param is big :: ${implementation.url}/winners?nb=10000`, onDone => {
                 fetch(`${implementation.url}/winners?nb=10000`).then(data => {
                     expect(data.status).toBe(200);
                     expect(data.json().length).toBeGreaterThan(0);
-                }).then(onDone, onDone);
+                    onDone();
+                }, onDone);
             });
 
             it(`should return an http 400 error when no param nb :: ${implementation.url}/winners`, onDone => {
                 fetch(`${implementation.url}/winners`).then(data => {
                     expect(data.status).toBe(400);
-                }).then(onDone, onDone);
+                    onDone();
+                }, onDone);
             });
 
             it(`should return an http 400 error when param nb is not a number :: ${implementation.url}/winners?nb=nb`, onDone => {
                 fetch(`${implementation.url}/winners?nb=nb`).then(data => {
                     expect(data.status).toBe(400);
-                }).then(onDone, onDone);
+                    onDone();
+                }, onDone);
             });
 
             it(`should return an http 400 error when nb param is negative :: ${implementation.url}/winners?nb=-1`, onDone => {
                 fetch(`${implementation.url}/winners?nb=-1`).then(data => {
                     expect(data.status).toBe(400);
-                }).then(onDone, onDone);
+                    onDone();
+                }, onDone);
             });
 
         } else { // no event created
 
-            it(`should return an http 502 error when no event founded :: ${implementation.url}/winners?nb=1`, onDone => {
+            it(`should return an http 502 error when no event found :: ${implementation.url}/winners?nb=1`, onDone => {
                 fetch(`${implementation.url}/winners?nb=1`).then(data => {
                     expect(data.status).toBe(502);
-                }).then(onDone, onDone);
+                    onDone();
+                }, onDone);
             });
 
         }
@@ -94,5 +102,3 @@ implementations.forEach((implementation) => {
     });
 
 });
-    
-
