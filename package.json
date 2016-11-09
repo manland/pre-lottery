@@ -11,6 +11,10 @@
   },
   "author": "Romain Maneschi",
   "license": "MIT",
+  "repository": {
+    "type" : "git"
+  , "url" : "git@github.com:manland/pre-lottery.git"
+  },
   "dependencies": {
     "jasmine-core": "=2.5.2"
   },
