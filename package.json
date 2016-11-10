@@ -4,8 +4,11 @@
   "description": "Lottery of lottery for montpellier-jug",
   "main": "index.js",
   "scripts": {
-    "dev": "mkdir -p dist && cp fetcher/index.html dist && cp fetcher/index.css dist && rollup --watch -i fetcher/main.js -o dist/bundle.js -f iife -m inline",
-    "build": "rollup -i fetcher/main.js -o dist/bundle.js -f iife",
+    "dev": "npm run dev:init && npm run dev:assets && npm run dev:rollup",
+    "dev:init": "mkdir -p dist",
+    "dev:assets": "cp src/index.html dist && cp src/index.css dist && cp src/min.logo.svg dist",
+    "dev:rollup": "rollup --watch -i src/index.js -o dist/bundle.js -f iife -m inline",
+    "build": "npm run dev:init && rollup -i src/index.js -o dist/bundle.js -f iife",
     "deploy": "gh-pages -d .",
     "test": "echo \"Open tests/tests.html in your browser!\""
   },

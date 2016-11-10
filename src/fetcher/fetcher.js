@@ -13,6 +13,7 @@ const fetchOne = (config, nb) => {
     }).then((res) => {
         return {winners: res, time: time, config: config, error: false};
     }, (error) => {
+        time = Date.now() - now;
         return {winners: [], time: time, config: config, error: error};
     });
 };

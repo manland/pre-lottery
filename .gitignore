@@ -1,5 +1,6 @@
 .idea
 dist
+npm-debug.log*
 node_modules/.bin
 node_modules/gh-pages
 node_modules/rollup
