@@ -35,7 +35,35 @@ html, body {
     padding: 150px;
 }
 
-.fireworksLink {
+.mainPage-linkTests {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.mainPage-linkTests-token {
+    display: none;
+    margin-left: 10px;
+}
+
+.mainPage-linkTests-token-input {
+    border-radius: 2px;
+    border: none;
+    padding: 5px;
+}
+
+.mainPage-linkTests-token-btn {
+    border-radius: 2px;
+    border: none;
+    padding: 5px 8px;
+    margin: 0 10px;
+    background-color: #fff;
+}
+
+.mainPage-fireworksLink {
     margin: 50px;
     width: 100px;
     height: 100px;
@@ -46,11 +74,11 @@ html, body {
     position: relative;
 }
 
-.fireworksLink-img {
+.mainPage-fireworksLink-img {
     width: 100%;
 }
 
-.fireworksLink-number {
+.mainPage-fireworksLink-number {
     position: absolute;
     top: -15px;
     right: -15px;
