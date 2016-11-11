@@ -8,31 +8,24 @@ export default class FireworksPage {
         this.name = 'fireworks';
     }
 
-    start() {
-
-        const page = document.getElementById('page');
-
+    start(pageContainer, pageParams) {
         const canvas = document.createElement('canvas');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         canvas.style.position = 'absolute';
         canvas.style.left = 0;
         canvas.style.top = 0;
-        page.appendChild(canvas);
+        pageContainer.appendChild(canvas);
 
         const winners = document.createElement('div');
         winners.classList.add('winners');
-        page.appendChild(winners);
-
-        const implems = document.createElement('div');
-        implems.classList.add('implems');
-        page.appendChild(implems);
+        pageContainer.appendChild(winners);
 
         const loosers = document.createElement('div');
         loosers.classList.add('loosers');
-        page.appendChild(loosers);
+        pageContainer.appendChild(loosers);
 
-        fetchAll(implementations, 2).then(data => {
+        fetchAll(implementations, pageParams.nb || 1).then(data => {
             console.log(data);
             data.sort((a, b) => a.time - b.time);
             const implementationsWinners = data.filter(d => d.error === false);

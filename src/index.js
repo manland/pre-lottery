@@ -1,5 +1,6 @@
 import MainPage from './pages/MainPage';
 import FireworksPage from './pages/fireworks/FireworksPage';
+import {parseHashParams} from './fetcher/utils';
 
 const mainPage = new MainPage();
 const fireworksPage = new FireworksPage();
@@ -10,11 +11,13 @@ const pagePerName = {
 };
 
 const managePages = () => {
-    const page = window.location.hash.substr(1);
-    if (pagePerName[page]) {
-        pagePerName[page].start();
+    const pageContainer = document.getElementById('page');
+    pageContainer.innerHTML = '';
+    const pageParams = parseHashParams(window.location.hash.substr(1));
+    if (pagePerName[pageParams.page]) {
+        pagePerName[pageParams.page].start(pageContainer, pageParams);
     } else {
-        mainPage.start();
+        mainPage.start(pageContainer);
     }
 };
 
