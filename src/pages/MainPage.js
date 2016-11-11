@@ -1,3 +1,5 @@
+import {elementBuilder} from '../utils/dom';
+
 export default class MainPage {
 
     constructor() {
@@ -5,26 +7,15 @@ export default class MainPage {
     }
 
     start(pageContainer) {
-        const mainPage = document.createElement('div');
-        mainPage.classList.add('mainPage');
-        pageContainer.appendChild(mainPage);
-
-        [1, 2, 3, 4, 5].forEach(i => mainPage.appendChild(this.buildFireworksLink(i)));
+        const mainPage = elementBuilder('div', 'mainPage', null, pageContainer).build();
+        [1, 2, 3, 4, 5].forEach(i => mainPage.appendChild(MainPage.buildFireworksLink(i)));
     }
 
-    buildFireworksLink(i) {
-        const link = document.createElement('a');
-        link.href = `#page=fireworks&nb=${i}`;
-        link.classList.add('fireworksLink');
-        const img = document.createElement('img');
-        img.src = 'assets/fireworks-icon.png';
-        img.classList.add('fireworksLink-img');
-        link.appendChild(img);
-        const number = document.createElement('span');
-        number.innerHTML = i;
-        number.classList.add('fireworksLink-number');
-        link.appendChild(number);
-        return link;
+    static buildFireworksLink(i) {
+        return elementBuilder('a', 'fireworksLink', {href: `#page=fireworks&nb=${i}`})
+            .appendChild('img', 'fireworksLink-img', {src: 'assets/fireworks-icon.png'})
+            .appendChild('span', 'fireworksLink-number', {innerHTML: i})
+            .build();
     }
 
 }

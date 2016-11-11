@@ -1,6 +1,7 @@
 import {fetchAll} from '../../fetcher/fetcher';
 import {implementations} from '../../fetcher/implementations';
 import {FireworkDisplay} from './fireworks.js';
+import {elementBuilder} from '../../utils/dom';
 
 export default class FireworksPage {
 
@@ -9,39 +10,40 @@ export default class FireworksPage {
     }
 
     start(pageContainer, pageParams) {
-        const canvas = document.createElement('canvas');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        canvas.style.position = 'absolute';
-        canvas.style.left = 0;
-        canvas.style.top = 0;
-        pageContainer.appendChild(canvas);
 
-        const winners = document.createElement('div');
-        winners.classList.add('winners');
-        pageContainer.appendChild(winners);
-
-        const loosers = document.createElement('div');
-        loosers.classList.add('loosers');
-        pageContainer.appendChild(loosers);
+        const canvas = elementBuilder('canvas', 'fireworks-canvas', {
+            width: window.innerWidth,
+            height: window.innerHeight
+        }, pageContainer).build();
+        const winners = elementBuilder('div', 'winners', null, pageContainer).build();
+        const loosers = elementBuilder('div', 'loosers', null, pageContainer).build();
 
         fetchAll(implementations, pageParams.nb || 1).then(data => {
             console.log(data);
             data.sort((a, b) => a.time - b.time);
-            const implementationsWinners = data.filter(d => d.error === false);
-            const implementationsError = data.filter(d => d.error !== false);
-            FireworkDisplay.launchText(canvas, implementationsWinners[0].winners.map(d => `${d.first_name}.${d.last_name}`).join(' '));
-            setTimeout(() => winners.innerHTML = implementationsWinners[0].winners.map(d => `${d.first_name} ${d.last_name}`).join(' & '), 20000);
-            loosers.innerHTML = this.formatRes(implementationsWinners, implementationsError);
+            const winners = data.filter(d => d.error === false);
+            const winner = winners[0];
+            const errors = data.filter(d => d.error !== false);
+            FireworkDisplay.launchText(canvas, winner.winners.map(d => `${d.first_name}.${d.last_name}`).join(' '));
+            setTimeout(() => this.details(pageContainer, winner, winners.filter((a, i) => i>0), errors), 5000);
         });
 
     }
 
-    formatRes(winners, errors) {
-        return `
-            <div class="winners-title">Winners</div><ul class="winners-list"><li>${winners[0].config.language} <i>(${winners[0].time}msc)</i></li></ul>
-            <div class="loosers-title">Loosers</div><ul class="loosers-list">${winners.filter((d, i) => i > 0).map(d => `<li>${d.config.language}  <i>(${d.time}msc)</i></li>`).join('')}</ul>
-            <div class="errors-title">Errors</div><ul class="errors-list">${errors.filter(d => d.error !== false).map(d => `<li>${d.config.language} <i>(${d.time}msc)</i><span>${d.error.message}</span></li>`).join('')}</ul>`;
+    details(pageContainer, winner, loosers, errors) {
+        const winnersNames = FireworksPage.getStringAttendees(winner);
+        elementBuilder('div', 'fireworks-details', null, pageContainer)
+            .appendChild('div', 'fireworks-details-title', {innerHTML: 'Winner'})
+            .appendChild('ul', 'fireworks-details-list', {innerHTML: `<li>${winner.config.language} <i>(${winner.time}msc)</i> : ${winnersNames}</li>`})
+            .appendChild('div', 'fireworks-details-title', {innerHTML: 'Looser'})
+            .appendChild('ul', 'fireworks-details-list', {innerHTML: `${loosers.map(d => `<li>${d.config.language}  <i>(${d.time}msc)</i> : ${FireworksPage.getStringAttendees(d)}</li>`).join('')}`})
+            .appendChild('div', 'fireworks-details-title', {innerHTML: 'Error'})
+            .appendChild('ul', 'fireworks-details-list', {innerHTML: `${errors.map(d => `<li>${d.config.language} <i>(${d.time}msc)</i><span>${d.error.message}</span></li>`).join('')}`})
+            .build();
+    }
+
+    static getStringAttendees(implem) {
+        return implem.winners.map(d => `${d.first_name}.${d.last_name}`).join(' ');
     }
 
 }

@@ -70,7 +70,7 @@ html, body {
 /* Fireworks Page         */
 /* ###################### */
 
-canvas {
+.fireworks-canvas {
     position: absolute;
     top: 0;
     left: 0;
@@ -83,14 +83,22 @@ canvas {
     bottom: 10px;
 }
 
-.loosers {
+.fireworks-details {
     position: absolute;
     left: 10px;
     bottom: 10px;
     width: 100%;
 }
 
-.loosers ul li span {
+.fireworks-details-title {
+
+}
+
+.fireworks-details-list {
+    list-style: none;
+}
+
+.fireworks-details-list li span {
     margin-left: 10px;
     font-size: 0.8em;
 }
