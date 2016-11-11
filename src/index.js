@@ -11,13 +11,12 @@ const pagePerName = {
 };
 
 const managePages = () => {
-    const pageContainer = document.getElementById('page');
-    pageContainer.innerHTML = '';
+    document.body.innerHTML = '';
     const pageParams = parseHashParams(window.location.hash.substr(1));
     if (pagePerName[pageParams.page]) {
-        pagePerName[pageParams.page].start(pageContainer, pageParams);
+        pagePerName[pageParams.page].start(document.body, pageParams);
     } else {
-        mainPage.start(pageContainer);
+        mainPage.start(document.body);
     }
 };
 

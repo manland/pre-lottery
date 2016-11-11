@@ -15,15 +15,13 @@ html, body {
     margin: 0;
     padding: 0;
     background-color: #222;
-    overflow: hidden;
-    font-family: "silkscreen", Helvetica, Arial, sans-serif;
 }
 
-#page {
-    position: relative;
-    height: 100%;
+body {
     background: url('assets/min.logo.svg');
     color: #fff;
+    overflow: hidden;
+    font-family: "silkscreen", Helvetica, Arial, sans-serif;
 }
 
 /* ###################### */
