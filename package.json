@@ -5,10 +5,10 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "npm run dev:init && npm run dev:test && npm run dev:assets && npm run dev:rollup",
-    "dev:init": "rm -rf dist && mkdir -p dist/tests",
+    "dev:init": "rm -rf dist && mkdir -p dist/tests/jasmine",
     "dev:assets": "cp src/index.html dist && cp src/index.css dist && cp -r src/assets dist",
     "dev:rollup": "rollup --watch -i src/index.js -o dist/bundle.js -f iife -m inline",
-    "dev:test": "cp -r tests dist",
+    "dev:test": "cp -r tests dist && cp node_modules/jasmine-core/lib/jasmine-core/boot.js dist/tests/jasmine && cp node_modules/jasmine-core/lib/jasmine-core/jasmine.css dist/tests/jasmine && cp node_modules/jasmine-core/lib/jasmine-core/jasmine.js dist/tests/jasmine && cp node_modules/jasmine-core/lib/jasmine-core/jasmine-html.js dist/tests/jasmine && cp node_modules/jasmine-core/images/jasmine_favicon.png dist/tests/jasmine",
     "build": "npm run build:init && npm run build:assets && npm run build:rollup && npm run build:uglify && npm run build:clean",
     "build:init": "npm run dev:init && npm run dev:test",
     "build:assets": "cp -r src/assets dist",

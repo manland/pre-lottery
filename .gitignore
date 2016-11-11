@@ -1,5 +1,4 @@
 .idea
 dist
-npm-debug.log*
 node_modules
-# keep node_modules/jasmine-core because it's required by tests.html page. I know is bad :D
+npm-debug.log*
