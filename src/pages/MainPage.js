@@ -1,4 +1,5 @@
 import {elementBuilder} from '../utils/dom';
+import {implementations} from '../fetcher/implementations';
 
 export default class MainPage {
 
@@ -21,6 +22,8 @@ export default class MainPage {
                 window.location.href = `tests/tests.html?token=${token}`;
             }});
         [1, 2, 3, 4, 5].forEach(i => mainPage.appendChild(MainPage.buildFireworksLink(i)));
+
+        pageContainer.appendChild(MainPage.buildImplementationsLink(implementations));
     }
 
     static buildFireworksLink(i) {
@@ -28,6 +31,19 @@ export default class MainPage {
             .appendChild('img', 'mainPage-fireworksLink-img', {src: 'assets/fireworks-icon.png'})
             .appendChild('span', 'mainPage-fireworksLink-number', {innerHTML: i})
             .build();
+    }
+
+    static buildImplementationsLink(implementations) {
+        const implementationsContainer = elementBuilder('ul', 'mainPage-implementationsLinks').build();
+        implementations.forEach((implementation) => {
+            elementBuilder('li', 'mainPage-implementationsLink', null, implementationsContainer)
+                .appendChild('img', 'mainPage-implementationsLink-img', {src: implementation.avatar})
+                .appendChild('a', 'mainPage-implementationsLink-link', {innerHTML: implementation.developer, href: implementation.git})
+                .appendChild('span', 'mainPage-implementationsLink-span', {innerHTML: 'has made '})
+                .appendChild('img', 'mainPage-implementationsLink-img', {src: implementation.image})
+                .appendChild('span', 'mainPage-implementationsLink-span', {innerHTML: ' implementation'});
+        });
+        return implementationsContainer;
     }
 
 }
