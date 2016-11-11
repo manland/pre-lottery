@@ -20,6 +20,7 @@ const fetchOne = (config, nb) => {
 
 /**
  * Fetcher nb winners and time to get them
+ * @param implementations: the lottery implementations
  * @param nb: int nb winners
  * @returns {Promise.<Array<{winners: Array<{name}>, time: number}>>}
  */

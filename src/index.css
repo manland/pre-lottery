@@ -77,12 +77,6 @@ html, body {
     box-sizing: border-box;
 }
 
-.winners {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-}
-
 .fireworks-details {
     position: absolute;
     left: 10px;
@@ -96,9 +90,4 @@ html, body {
 
 .fireworks-details-list {
     list-style: none;
-}
-
-.fireworks-details-list li span {
-    margin-left: 10px;
-    font-size: 0.8em;
 }
