@@ -12,6 +12,13 @@ export const elementBuilder = (type, css, params, parent) => {
             el.appendChild(elementBuilder(type, css, params, parent).build());
             return builder;
         },
+        appendChildIf: (condition, callback) => {
+            if(condition) {
+                return builder.appendChild(...callback());
+            } else {
+                return builder
+            }
+        },
         build: _ => el
     };
     return builder;
