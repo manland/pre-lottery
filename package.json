@@ -15,7 +15,7 @@
     "build:rollup": "rollup -i src/index.js -o dist/bundle.js -f iife",
     "build:uglify": "babel dist/bundle.js --presets=es2015 | uglifyjs -cm | indexhtmlify --style src/index.css | metadataify | html-minifier --minify-css > dist/index.html",
     "build:clean": "rm dist/bundle.js",
-    "deploy": "gh-pages -d dist/.",
+    "deploy": "npm run build && gh-pages -d dist/.",
     "test": "echo \"Open tests/tests.html in your browser!\""
   },
   "author": "Romain Maneschi",
