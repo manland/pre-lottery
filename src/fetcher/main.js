@@ -1,6 +1,6 @@
 import {fetchAll} from './fetcher';
 import {implementations} from './implementations';
-import {shuffle} from './utils';
+import {shuffle} from '../utils/utils';
 import {buildStarships} from './starship';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('resize', () => starshipsCtrl.clearAndDraw());
 
-    fetchAll(shuffle(implementations), 1).then((data) => {
+    fetchAll(implementations, 1).then((data) => {
         console.log(data);
     });
 

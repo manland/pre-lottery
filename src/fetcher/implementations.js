@@ -1,4 +1,6 @@
-export const implementations = [/*{
+import {shuffle} from '../utils/utils';
+
+export const implementations = shuffle([/*{
     language: 'NodeJs',
     url: 'https://lottery-js.jug-montpellier.org'
 }, */{
@@ -7,4 +9,4 @@ export const implementations = [/*{
 }, {
     language: 'Go',
     url: 'https://lottery-go.jug-montpellier.org'
-}];
+}]);

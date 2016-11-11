@@ -1,6 +1,6 @@
 import MainPage from './pages/MainPage';
 import FireworksPage from './pages/fireworks/FireworksPage';
-import {parseHashParams} from './fetcher/utils';
+import {parseHashParams} from './utils/utils';
 
 const mainPage = new MainPage();
 const fireworksPage = new FireworksPage();
