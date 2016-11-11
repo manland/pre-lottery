@@ -13,7 +13,7 @@
     "build:init": "npm run dev:init && npm run dev:test",
     "build:assets": "cp -r src/assets dist",
     "build:rollup": "rollup -i src/index.js -o dist/bundle.js -f iife",
-    "build:uglify": "babel dist/bundle.js --presets=es2015 | uglifyjs -cm | indexhtmlify --title Pre-Lottery --style src/index.css | html-minifier --minify-css > dist/index.html",
+    "build:uglify": "babel dist/bundle.js --presets=es2015 | uglifyjs -cm | indexhtmlify --style src/index.css | metadataify | html-minifier --minify-css > dist/index.html",
     "build:clean": "rm dist/bundle.js",
     "deploy": "gh-pages -d dist/.",
     "test": "echo \"Open tests/tests.html in your browser!\""
@@ -29,13 +29,14 @@
   },
   "devDependencies": {
     "babel-cli": "6.18.0",
+    "babel-preset-es2015": "6.18.0",
     "gh-pages": "0.11.0",
+    "html-minifier": "3.1.1",
+    "indexhtmlify": "1.3.1",
+    "metadataify": "^1.0.2",
     "rollup": "0.36.3",
     "rollup-watch": "2.5.0",
     "uglify-js": "2.7.4",
-    "babel-preset-es2015": "6.18.0",
-    "indexhtmlify": "1.3.1",
-    "html-minifier": "3.1.1",
     "watch": "1.0.1"
   }
 }
