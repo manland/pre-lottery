@@ -1,6 +1,7 @@
 import MainPage from './pages/MainPage';
 import FireworksPage from './pages/fireworks/FireworksPage';
 import {parseHashParams} from './utils/utils';
+import {buildFooter} from './utils/dom';
 
 const mainPage = new MainPage();
 const fireworksPage = new FireworksPage();
@@ -18,6 +19,7 @@ const managePages = () => {
     } else {
         mainPage.start(document.body);
     }
+    document.body.appendChild(buildFooter());
 };
 
 window.addEventListener('DOMContentLoaded', () => {

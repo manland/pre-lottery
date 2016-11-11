@@ -92,6 +92,17 @@ body {
     color: #fff;
 }
 
+.mainPage-footer {
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.mainPage-footer-link {
+    color: #fff;
+}
+
 /* ###################### */
 /* Fireworks Page         */
 /* ###################### */
@@ -106,8 +117,11 @@ body {
 .fireworks-details {
     position: absolute;
     left: 10px;
-    bottom: 10px;
-    width: 100%;
+    bottom: 50px;
+    padding: 10px;
+    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 .fireworks-details-title {

@@ -23,3 +23,10 @@ export const elementBuilder = (type, css, params, parent) => {
     };
     return builder;
 };
+
+export const buildFooter = () => {
+    return elementBuilder('footer', 'mainPage-footer')
+        .appendChild('span', 'mainPage-footer-span', {innerHTML: 'Made with &#10084; by '})
+        .appendChild('a', 'mainPage-footer-link', {innerHTML: 'Jug Montpellier', href: 'https://www.jug-montpellier.org/'})
+        .build();
+};

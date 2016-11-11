@@ -7,10 +7,12 @@ export default class MainPage {
     }
 
     start(pageContainer) {
-        const mainPage = elementBuilder('div', 'mainPage', null, pageContainer).build();
         const linkTests = elementBuilder('div', 'mainPage-linkTests', {innerHTML: 'Run tests >', onclick: () => {
             document.querySelector('.mainPage-linkTests-token').style.display = 'inline-block';
         }}, pageContainer).build();
+
+        const mainPage = elementBuilder('div', 'mainPage', null, pageContainer).build();
+
         elementBuilder('div', 'mainPage-linkTests-token', null, linkTests)
             .appendChild('input', 'mainPage-linkTests-token-input', {type: 'text', placeholder: 'token', value: localStorage.getItem('tokenTests')})
             .appendChild('button', 'mainPage-linkTests-token-btn', {innerHTML: '>', onclick: () => {
