@@ -27,5 +27,28 @@ const fetchOne = (config, nb) => {
 export const fetchAll = (implementations, nb) => {
     return Promise.all(implementations.map((implementation) => {
         return fetchOne(implementation, nb);
-    }));
+    })).then(data => group(data));
+};
+
+const group = (data) => {
+    data.sort((a, b) => a.time - b.time);
+    return data.reduce((acc, implementation) => {
+        if(implementation.error === false && checkWinner(implementation) && acc.winner === undefined) {
+            acc.winner = implementation;
+        } else if(implementation.error === false && checkWinner(implementation)) {
+            acc.loosers.push(implementation);
+        } else {
+            console.log(implementation);
+            if(!implementation.error) {
+                acc.errors.push(Object.assign(implementation, {error: {message: 'Result bad formatted!'}}));
+            } else {
+                acc.errors.push(implementation);
+            }
+        }
+        return acc;
+    }, {winner: undefined, loosers: [], errors: []});
+};
+
+const checkWinner = (implementation) => {
+    return implementation.winners && implementation.winners.length > 0 && implementation.winners[0].last_name && implementation.winners[0].first_name;
 };

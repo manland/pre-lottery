@@ -16,21 +16,11 @@ export default class FireworksPage {
             height: window.innerHeight
         }, pageContainer).build();
 
-        fetchAll(implementations, pageParams.nb || 1).then(data => {
-            const {winner, loosers, errors} = FireworksPage.group(data);
+        fetchAll(implementations, pageParams.nb || 1).then(({winner, loosers, errors}) => {
             FireworkDisplay.launchText(canvas, !!winner ? FireworksPage.getStringAttendees(winner, ' ') : 'FAIL !!');
             setTimeout(() => pageContainer.appendChild(FireworksPage.buildDetails(winner, loosers, errors)), 20000);
         });
 
-    }
-
-    static group(data) {
-        data.sort((a, b) => a.time - b.time);
-        const winners = data.filter(d => d.error === false);
-        const winner = winners[0];
-        const loosers = winners.filter((a, i) => i>0)
-        const errors = data.filter(d => d.error !== false);
-        return {winner, loosers, errors};
     }
 
     static buildDetails(winner, loosers, errors) {
