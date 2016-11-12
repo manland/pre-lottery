@@ -45,6 +45,23 @@ implementations.forEach((implementation) => {
                 .catch(onDone);
         });
 
+        it(`should return 1 winner well formatted :: ${implementation.url}/winners?nb=1`, onDone => {
+            fetch(`${implementation.url}/winners?nb=1`)
+                .then(data => {
+                    expect(data.status).toBe(200);
+                    return data.json();
+                })
+                .then(data => {
+                    expect(data.length).toBe(1);
+                    expect(data[0].last_name).not.toBeUndefined();
+                    expect(data[0].first_name).not.toBeUndefined();
+                    expect(data[0].email).toBeUndefined();
+                    onDone();
+                })
+                .catch((err) => expect(err).toBeNull())
+                .catch(onDone);
+        });
+
         it(`should return n winners :: ${implementation.url}/winners?nb=N`, onDone => {
             const nb = Math.floor((Math.random() * 5) + 1);
             fetch(`${implementation.url}/winners?nb=${nb}`)
