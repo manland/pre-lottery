@@ -12,6 +12,8 @@ export default class MainPage {
             document.querySelector('.mainPage-linkTests-token').style.display = 'inline-block';
         }}, pageContainer).build();
 
+        pageContainer.appendChild(MainPage.buildTitle());
+
         const mainPage = elementBuilder('div', 'mainPage', null, pageContainer).build();
 
         elementBuilder('div', 'mainPage-linkTests-token', null, linkTests)
@@ -24,6 +26,15 @@ export default class MainPage {
         [1, 2, 3, 4, 5].forEach(i => mainPage.appendChild(MainPage.buildFireworksLink(i)));
 
         pageContainer.appendChild(MainPage.buildImplementationsLink(implementations));
+    }
+
+    static buildTitle() {
+        const title = elementBuilder('h1', 'mainPage-title', {innerHTML: 'Loading event title...'}).build();
+        fetch('https://www.jug-montpellier.org/restEvents/upcoming')
+            .then(d => d.json())
+            .then(d => title.innerHTML = d[0].title)
+            .catch(_ => title.innerHTML = 'Event not open');
+        return title;
     }
 
     static buildFireworksLink(i) {
@@ -39,9 +50,8 @@ export default class MainPage {
             elementBuilder('li', 'mainPage-implementationsLink', null, implementationsContainer)
                 .appendChild('img', 'mainPage-implementationsLink-img', {src: implementation.avatar})
                 .appendChild('a', 'mainPage-implementationsLink-link', {innerHTML: implementation.developer, href: implementation.git})
-                .appendChild('span', 'mainPage-implementationsLink-span', {innerHTML: 'has made '})
-                .appendChild('img', 'mainPage-implementationsLink-img', {src: implementation.image})
-                .appendChild('span', 'mainPage-implementationsLink-span', {innerHTML: ' implementation'});
+                .appendChild('span', 'mainPage-implementationsLink-span', {innerHTML: 'plays with '})
+                .appendChild('img', 'mainPage-implementationsLink-img', {src: implementation.image});
         });
         return implementationsContainer;
     }

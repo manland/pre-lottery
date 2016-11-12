@@ -38,7 +38,6 @@ const group = (data) => {
         } else if(implementation.error === false && checkWinner(implementation)) {
             acc.loosers.push(implementation);
         } else {
-            console.log(implementation);
             if(!implementation.error) {
                 acc.errors.push(Object.assign(implementation, {error: {message: 'Result bad formatted!'}}));
             } else {
