@@ -26,6 +26,8 @@ export default class MainPage {
         [1, 2, 3, 4, 5].forEach(i => mainPage.appendChild(MainPage.buildFireworksLink(i)));
 
         pageContainer.appendChild(MainPage.buildImplementationsLink(implementations));
+
+        pageContainer.appendChild(MainPage.buildPartners());
     }
 
     static buildTitle() {
@@ -54,6 +56,22 @@ export default class MainPage {
                 .appendChild('img', 'mainPage-implementationsLink-img', {src: implementation.image});
         });
         return implementationsContainer;
+    }
+
+    static buildPartners() {
+        const partnersContainer = elementBuilder('div', 'mainPage-partners', {innerHTML: 'Loading partners...'}).build();
+        fetch('https://www.jug-montpellier.org/restPartners/')
+            .then(d => d.json())
+            .then(d => d.filter(p => Date.now() < p.stopdate))
+            .then(d => {
+                partnersContainer.innerHTML = '';
+                d.forEach((partner) => {
+                    elementBuilder('a', 'mainPage-partners-link', {href: `https://www.jug-montpellier.org/partners/${partner.id}`}, partnersContainer)
+                        .appendChild('img', 'mainPage-partners-img', {src: partner.logourl})
+                });
+            })
+            .catch(_ => partnersContainer.innerHTML = 'No partners');
+        return partnersContainer;
     }
 
 }

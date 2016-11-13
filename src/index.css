@@ -94,7 +94,7 @@ body {
 
 .mainPage-implementationsLinks {
     list-style: none;
-    margin-top: 5%;
+    margin: 5% 0;
 }
 
 .mainPage-implementationsLink {
@@ -114,11 +114,26 @@ body {
     color: #fff;
 }
 
+.mainPage-partners {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 5% 0;
+}
+
+.mainPage-partners-img {
+    width: 150px;
+    margin: 35px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 2px;
+}
+
 .mainPage-footer {
     position: fixed;
     bottom: 10px;
     text-align: center;
     width: 100%;
+    z-index: -1;
 }
 
 .mainPage-footer-link {
