@@ -18,5 +18,4 @@ export const parseHashParams = (hash) => {
         acc[p[0]] = p[1];
         return acc;
     }, {});
-
 };

@@ -1,6 +1,10 @@
 export const elementBuilder = (type, css, params, parent) => {
     const el = document.createElement(type);
-    el.classList.add(css);
+    if(Array.isArray(css)) {
+        el.classList.add(...css);
+    } else {
+        el.classList.add(css);
+    }
     if (params) {
         Object.keys(params).forEach(k => el[k] = params[k]);
     }
