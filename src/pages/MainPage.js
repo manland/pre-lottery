@@ -65,6 +65,7 @@ export default class MainPage {
             .then(d => d.filter(p => Date.now() < p.stopdate))
             .then(d => {
                 partnersContainer.innerHTML = '';
+                elementBuilder('h1', 'mainPage-partners-title', {innerHTML: '❤  Partners  ❤'}, partnersContainer);
                 d.forEach((partner) => {
                     elementBuilder('a', 'mainPage-partners-link', {href: `https://www.jug-montpellier.org/partners/${partner.id}`}, partnersContainer)
                         .appendChild('img', 'mainPage-partners-img', {src: partner.logourl})

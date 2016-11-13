@@ -54,7 +54,7 @@ body {
 }
 
 .mainPage-title {
-    padding: 7%;
+    padding: 5%;
 }
 
 .mainPage {
@@ -116,8 +116,11 @@ body {
 
 .mainPage-partners {
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.2);
-    margin: 5% 0;
+    margin: 5% 10px;
+    padding: 10px;
+    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 .mainPage-partners-img {
@@ -134,6 +137,7 @@ body {
     text-align: center;
     width: 100%;
     z-index: -1;
+    font-size: 0.8em;
 }
 
 .mainPage-footer-link {
@@ -162,11 +166,15 @@ body {
 }
 
 .fireworks-loader {
+    transition: opacity 1s ease-out;
     width: calc(100% - 20px);
-    height: 265px;
+    height: calc(100% - 60px);
     overflow: hidden;
     box-sizing: border-box;
     padding: 0;
+}
+.fireworks-loader.hidden {
+    opacity: 0;
 }
 
 .fireworks-loader-sentences {

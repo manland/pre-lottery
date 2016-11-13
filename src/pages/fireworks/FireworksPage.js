@@ -100,7 +100,7 @@ export default class FireworksPage {
                     if (!fetchIsFinish || displayedMsg < sentences.length + 1) {
                         displayOne();
                     } else {
-                        loader.style.display = 'none';
+                        loader.classList.add('hidden');
                         resolve(fetchData);
                     }
                 }, 1000);
