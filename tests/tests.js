@@ -16,19 +16,23 @@ implementations.forEach((implementation) => {
         let eventIsCreated = false;
 
         beforeAll((onDone) => {
-            const token = getParameterByName('token');
-            if(token) {
-                fetch(`https://www.eventbriteapi.com/v3/events/search/?organizer.id=1464915124&token=${token}`)
-                    .then(data => data.json())
-                    .then(data => {
-                        eventIsCreated = data.events.length > 0;
-                        onDone();
-                    })
-                    .catch((err) => expect(err).toBeNull())
-                    .catch(onDone);
-            } else {
-                window.alert('Add a token in url please!')
-            }
+            // inactive token request because not used today
+
+            //const token = getParameterByName('token');
+            //if(token) {
+            //    fetch(`https://www.eventbriteapi.com/v3/events/search/?organizer.id=1464915124&token=${token}`)
+            //        .then(data => data.json())
+            //        .then(data => {
+            //            eventIsCreated = data.events.length > 0;
+            //            onDone();
+            //        })
+            //        .catch((err) => expect(err).toBeNull())
+            //        .catch(onDone);
+            //} else {
+            //    window.alert('Add a token in url please!')
+            //}
+
+            onDone();
         });
 
         it(`should return 1 winner :: ${implementation.url}/winners?nb=1`, onDone => {
