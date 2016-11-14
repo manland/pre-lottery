@@ -78,7 +78,7 @@ export default class FireworksPage {
         pageContainer.appendChild(loaderManager.loader);
         loaderManager.promise.then(({winner, loosers, errors}) => {
             FireworkDisplay.launchText(canvas, !!winner ? FireworksPage.getStringAttendees(winner, ' ') : 'FAIL !!');
-            setTimeout(() => pageContainer.appendChild(FireworksPage.buildDetails(winner, loosers, errors)), 20000);
+            setTimeout(() => pageContainer.appendChild(FireworksPage.buildDetails(winner, loosers, errors)), 10000);
         });
 
     }
