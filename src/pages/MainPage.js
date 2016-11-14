@@ -14,8 +14,6 @@ export default class MainPage {
 
         pageContainer.appendChild(MainPage.buildTitle());
 
-        const mainPage = elementBuilder('div', 'mainPage', null, pageContainer).build();
-
         elementBuilder('div', 'mainPage-linkTests-token', null, linkTests)
             .appendChild('input', 'mainPage-linkTests-token-input', {type: 'text', placeholder: 'token', value: localStorage.getItem('tokenTests')})
             .appendChild('button', 'mainPage-linkTests-token-btn', {innerHTML: '>', onclick: () => {
@@ -24,6 +22,9 @@ export default class MainPage {
                 window.location.href = `tests/tests.html?token=${token}`;
             }});
 
+        const mainPage = elementBuilder('div', 'mainPage', null, pageContainer)
+            .appendChild('h1', [], {innerHTML: 'Prices'})
+            .build();
         mainPage.appendChild(MainPage.buildPriceIcon('jetbrains.svg', true));
         mainPage.appendChild(MainPage.buildPriceIcon('jetbrains.svg', true));
         mainPage.appendChild(MainPage.buildPriceIcon('jetbrains.svg', false));
@@ -68,7 +69,9 @@ export default class MainPage {
     }
 
     static buildImplementationsLink(implementations) {
-        const implementationsContainer = elementBuilder('ul', 'mainPage-implementationsLinks').build();
+        const implementationsContainer = elementBuilder('ul', 'mainPage-implementationsLinks')
+            .appendChild('h1', [], {innerHTML: 'Implementations'})
+            .build();
         implementations.forEach((implementation) => {
             elementBuilder('li', 'mainPage-implementationsLink', null, implementationsContainer)
                 .appendChild('img', 'mainPage-implementationsLink-img', {src: implementation.avatar})
