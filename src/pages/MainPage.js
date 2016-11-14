@@ -33,6 +33,7 @@ export default class MainPage {
         mainPage.appendChild(MainPage.buildPriceIcon('jugoir.png', false));
         mainPage.appendChild(MainPage.buildPriceIcon('jugshirt.png', false));
         mainPage.appendChild(MainPage.buildPriceIcon('jugass.png', false));
+        mainPage.appendChild(MainPage.buildPriceIcon('jugvin.png', false));
         mainPage.appendChild(MainPage.buildStartButton());
 
         pageContainer.appendChild(MainPage.buildImplementationsLink(implementations));
