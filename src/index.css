@@ -20,7 +20,7 @@ body {
     background: #222 url('assets/min.logo.svg');
     color: #fff;
     font-family: "silkscreen", Helvetica, Arial, sans-serif;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 /* ###################### */
@@ -66,35 +66,50 @@ body {
     vertical-align: top;
 }
 
-.mainPage-fireworksLink {
-    margin: 3%;
-    width: 100px;
-    height: 100px;
+.mainPage-price {
     display: inline-block;
+    width: 150px;
+    height: 70px;
     border: 2px solid #fff;
-    box-sizing: border-box;
+    margin: 20px;
     border-radius: 2px;
     position: relative;
+    cursor: pointer;
+    box-sizing: border-box;
 }
 
-.mainPage-fireworksLink-img {
+.mainPage-price-selected::after {
+    content: "✓";
+    position: absolute;
+    color: #12ff00;
+    top: -15px;
+    right: -15px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    font-size: 2em;
+    width: 38px;
+    height: 38px;
+    line-height: 44px;
+    text-align: center;
+    background-color: #222;
+}
+
+.mainPage-price-img {
     width: 100%;
 }
 
-.mainPage-fireworksLink-number {
-    position: absolute;
-    top: -15px;
-    right: -15px;
-    font-size: 2em;
-    background-color: #000;
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    padding: 5px;
-    text-align: center;
-    border: 2px solid #fff;
-    box-sizing: border-box;
-    color: #fff;
+.mainPage-startButton {
+    cursor: pointer;
+    margin: 20px;
+    line-height: 70px;
+    color: #000;
+    background-color: #fff;
+    border: 2px;
+    display: inline-block;
+    width: 150px;
+    height: 70px;
+    border-radius: 2px;
+    vertical-align: top;
 }
 
 .mainPage-implementationsLinks {

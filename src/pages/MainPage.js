@@ -23,7 +23,16 @@ export default class MainPage {
                 localStorage.setItem('tokenTests', token);
                 window.location.href = `tests/tests.html?token=${token}`;
             }});
-        [1, 2, 3, 4, 5].forEach(i => mainPage.appendChild(MainPage.buildFireworksLink(i)));
+
+        mainPage.appendChild(MainPage.buildPriceIcon('jetbrains.svg', true));
+        mainPage.appendChild(MainPage.buildPriceIcon('jetbrains.svg', true));
+        mainPage.appendChild(MainPage.buildPriceIcon('jetbrains.svg', false));
+        mainPage.appendChild(MainPage.buildPriceIcon('devoxx.jpg', false));
+        mainPage.appendChild(MainPage.buildPriceIcon('dday.png', false));
+        mainPage.appendChild(MainPage.buildPriceIcon('jugoir.png', false));
+        mainPage.appendChild(MainPage.buildPriceIcon('jugshirt.png', false));
+        mainPage.appendChild(MainPage.buildPriceIcon('jugass.png', false));
+        mainPage.appendChild(MainPage.buildStartButton());
 
         pageContainer.appendChild(MainPage.buildImplementationsLink(implementations));
 
@@ -39,11 +48,23 @@ export default class MainPage {
         return title;
     }
 
-    static buildFireworksLink(i) {
-        return elementBuilder('a', 'mainPage-fireworksLink', {href: `#page=fireworks&nb=${i}`})
-            .appendChild('img', 'mainPage-fireworksLink-img', {src: 'assets/fireworks-icon.png'})
-            .appendChild('span', 'mainPage-fireworksLink-number', {innerHTML: i})
-            .build();
+    static buildPriceIcon(name, selected) {
+        const css = 'mainPage-price-selected';
+        const classesCss = ['mainPage-price'];
+        if(selected) {
+            classesCss.push(css);
+        }
+        const elem = elementBuilder('div', classesCss, {onclick: () => {
+            elem.classList.contains(css) ? elem.classList.remove(css) : elem.classList.add(css);
+        }}).build();
+        elem.style.background = `url('assets/price-${name}') no-repeat center`;
+        return elem;
+    }
+
+    static buildStartButton() {
+        return elementBuilder('div', 'mainPage-startButton', {innerHTML: '> START >', onclick: () => {
+            window.location.href = `#page=fireworks&nb=${document.querySelectorAll('.mainPage-price-selected').length}`;
+        }}).build();
     }
 
     static buildImplementationsLink(implementations) {

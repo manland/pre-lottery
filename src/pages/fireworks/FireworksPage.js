@@ -2,7 +2,7 @@ import {fetchAll} from '../../fetcher/fetcher';
 import {implementations} from '../../fetcher/implementations';
 import {FireworkDisplay} from './fireworks.js';
 import {elementBuilder} from '../../utils/dom';
-import {shuffle} from '../../utils/utils';
+import {shuffle, cleanText} from '../../utils/utils';
 
 const LEVELS = {
     debug: 'debug',
@@ -138,7 +138,8 @@ export default class FireworksPage {
     }
 
     static getStringAttendees(implem, separator) {
-        return implem.winners.map(d => `${d.first_name}.${d.last_name}`).join(separator);
+
+        return implem.winners.map(d => `${cleanText(d.first_name)}.${cleanText(d.last_name)}`).join(separator);
     }
 
 }

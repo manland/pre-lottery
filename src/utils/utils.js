@@ -19,3 +19,16 @@ export const parseHashParams = (hash) => {
         return acc;
     }, {});
 };
+
+const cleanDict = {'é': 'e', 'ç': 'c', 'è': 'e', 'ö': 'o', 'ë': 'e'};
+
+/**
+ * from é to e or ça to ca
+ * @param text
+ * @returns {string|XML|void|*}
+ */
+export const cleanText = (text) => {
+    return text.replace(/[^\w ]/g, function(char) {
+        return cleanDict[char] || char;
+    });
+};
