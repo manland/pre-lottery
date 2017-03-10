@@ -78,7 +78,7 @@ export default class FireworksPage {
         pageContainer.appendChild(loaderManager.loader);
         loaderManager.promise.then(({winner, loosers, errors}) => {
             FireworkDisplay.launchText(canvas, !!winner ? FireworksPage.getStringAttendees(winner, ' ') : 'FAIL !!');
-            setTimeout(() => pageContainer.appendChild(FireworksPage.buildDetails(winner, loosers, errors)), 10000);
+            setTimeout(() => pageContainer.appendChild(FireworksPage.buildDetails(winner, loosers, errors)), 5000);
         });
 
     }
@@ -103,7 +103,7 @@ export default class FireworksPage {
                         loader.classList.add('hidden');
                         resolve(fetchData);
                     }
-                }, 1000);
+                }, 500);
             };
             displayOne();
         });
